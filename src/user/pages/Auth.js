@@ -67,7 +67,7 @@ const Auth = () => {
 
     if (isLoginMode) {
       try {
-        await sendRequest(
+        const responseDate = await sendRequest(
           "http://localhost:5000/api/users/login",
           "POST",
           JSON.stringify({
@@ -78,13 +78,13 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        auth.login();
+        auth.login(responseDate.user.id);
       } catch (err) {
         //we are already setting everything in our custom hook
       }
     } else {
       try {
-        await sendRequest(
+        const responseDate = await sendRequest(
           "http://localhost:5000/api/users/signup",
           "POST",
           JSON.stringify({
@@ -96,7 +96,7 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        auth.login();
+        auth.login(responseDate.user.id);
       } catch (err) {
         //we are already setting everything in our custom hook
       }
