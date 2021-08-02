@@ -13,17 +13,23 @@ const UserPlaces = (props) => {
 
   useEffect(() => {
     const fetchPlaces = async () => {
-    try {
-      const responseData = await sendRequest(
-        `http://localhost:5000/api/places/user/${userId}`
-      );
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/places/user/${userId}`
+        );
 
-      setLoadedPlaces(responseData.places);
-    } catch (err) {}
+        setLoadedPlaces(responseData.places);
+      } catch (err) {}
+    };
+
+    fetchPlaces();
+  }, [sendRequest, userId]);
+
+  const placeDeletedHandler = (deletedPlaceId) => {
+    setLoadedPlaces((prevPlaces) =>
+      prevPlaces.filter((place) => place.id !== deletedPlaceId)
+    );
   };
-
-  fetchPlaces();
-}, [sendRequest, userId]);
 
   return (
     <React.Fragment>
@@ -33,7 +39,9 @@ const UserPlaces = (props) => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} />}
+      {!isLoading && loadedPlaces && (
+        <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />
+      )}
     </React.Fragment>
   );
 };
