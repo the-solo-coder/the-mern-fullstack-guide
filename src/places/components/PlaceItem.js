@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
@@ -18,7 +17,6 @@ const PlaceItem = (props) => {
   const [showConfirmModal, setShowConfigModal] = useState(false);
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const history = useHistory();
 
   const openMapHandler = () => setShowMap(true);
 
