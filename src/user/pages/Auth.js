@@ -91,10 +91,10 @@ const Auth = () => {
     } else {
       try {
         const formData = new FormData();
-        formData.append('email', formState.inputs.email.value);
-        formData.append('name', formState.inputs.name.value);
-        formData.append('password', formState.inputs.password.value);
-        formData.append('image', formState.inputs.image.value);
+        formData.append("email", formState.inputs.email.value);
+        formData.append("name", formState.inputs.name.value);
+        formData.append("password", formState.inputs.password.value);
+        formData.append("image", formState.inputs.image.value);
 
         const responseDate = await sendRequest(
           "http://localhost:5000/api/users/signup",
@@ -128,7 +128,12 @@ const Auth = () => {
             />
           )}
           {!isLoginMode && (
-            <ImageUpload id="image" center onInput={inputHandler} />
+            <ImageUpload
+              id="image"
+              center
+              onInput={inputHandler}
+              errorText="Please provide an image"
+            />
           )}
           <Input
             id="email"
