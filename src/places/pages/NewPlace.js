@@ -56,7 +56,9 @@ const NewPlace = () => {
       formData.append("creator", auth.userId);
       formData.append("image", formState.inputs.image.value);
 
-      await sendRequest("http://localhost:5000/api/places", "POST", formData);
+      await sendRequest("http://localhost:5000/api/places", "POST", formData, {
+        Authorization: "BEARER " + auth.token,
+      });
       history.push("/");
     } catch (err) {
       //we are already setting everything in our custom hook

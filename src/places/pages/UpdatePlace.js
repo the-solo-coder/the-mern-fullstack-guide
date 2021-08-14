@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
@@ -67,12 +67,10 @@ const UpdatePlace = () => {
           },
           true
         );
-  
       } catch (err) {}
     };
 
     fetchPlace();
-
   }, [sendRequest, placeId, setFormData]);
 
   const placeUpdateSubmitHandler = async (event) => {
@@ -95,7 +93,6 @@ const UpdatePlace = () => {
     } catch (err) {
       //we are already setting everything in our custom hook
     }
-
   };
 
   if (!loadedPlace) {

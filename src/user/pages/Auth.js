@@ -84,7 +84,7 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        auth.login(responseDate.user.id);
+        auth.login(responseDate.userId, responseDate.token);
       } catch (err) {
         //we are already setting everything in our custom hook
       }
@@ -101,7 +101,7 @@ const Auth = () => {
           "POST",
           formData
         );
-        auth.login(responseDate.user.id);
+        auth.login(responseDate.userId, responseDate.token);
       } catch (err) {
         //we are already setting everything in our custom hook
       }

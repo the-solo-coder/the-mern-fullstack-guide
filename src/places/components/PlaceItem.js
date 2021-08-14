@@ -32,7 +32,11 @@ const PlaceItem = (props) => {
     try {
       await sendRequest(
         `http://localhost:5000/api/places/${props.id}`,
-        "DELETE"
+        "DELETE",
+        null,
+        {
+          Authorization: "BEARER " + auth.token,
+        }
       );
       props.onDelete(props.id);
     } catch (err) {
@@ -77,7 +81,10 @@ const PlaceItem = (props) => {
         {isLoading && <LoadingSpinner asOverlay />}
         <Card className="place-item__content">
           <div className="place-item__image">
-            <img src={`http://localhost:5000/${props.image}`} alt={props.title} />
+            <img
+              src={`http://localhost:5000/${props.image}`}
+              alt={props.title}
+            />
           </div>
           <div className="place-item__info">
             <h2>{props.title}</h2>
@@ -88,7 +95,7 @@ const PlaceItem = (props) => {
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>
-            {(props.creatorId === auth.userId) && (
+            {props.creatorId === auth.userId && (
               <React.Fragment>
                 <Button to={`/places/${props.id}`}>EDIT</Button>
                 <Button danger onClick={showDeleteWarningHandler}>
